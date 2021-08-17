@@ -203,3 +203,18 @@ console.log(TotalcityCount);
 let stateCount = prompt("Enter State Name To Get count : ");
 let TotalStateCount = contactList.filter(x=>x.state == stateCount).reduce((count)=>count+1 ,0);
 console.log(TotalStateCount);
+
+function Display(list)
+{
+    for( let value of list)
+    {
+        console.log(value.toString());
+    }
+}
+function SortBasedOnName()
+{
+    //Usecase 11: Ability to sort the entries in the address book by Person’s first Name
+    contactList.sort();
+    //Display Array Objects
+    Display(contactList);
+}
