@@ -1,3 +1,4 @@
+var prompt = require('prompt-sync')();
 class Contacts {
     constructor(...params) {
         let regexName = RegExp('^[A-Z]{1}[a-z]{2,}');
@@ -44,5 +45,77 @@ class Contacts {
         return ("Name: " + this.firstName + " " + this.lastName + " \t Address: " + this.address + " \t City: " + this.city + " \t State: " + this.state + " \t Pincode: " + this.zip + " \t Phone Number: " + this.phoneNumber + " \t Email Id: " + this.email);
     }
 }
-let contacts = new Contacts("Sai", "Vijay", "gandi nagar", "Nellore", "America", 8893, 9989388339, "sai@gmail.com");
-console.log("Contact Details : \n" + contacts.toString());
+try {
+    var contactList = new Array();
+    let number = parseInt(prompt("Enter number of contacts to be created:  "));
+    var contacts;
+    while (number--) {
+        let firstName = prompt("Enter First Name:  ");
+        let lastName = prompt("Enter Last Name:  ");
+        let address = prompt("Enter Address:  ");
+        let city = prompt("Enter City:  ");
+        let state = prompt("Enter State:  ");
+        let zip = prompt("Enter Zip:  ");
+        let phoneNumber = prompt("Enter Phone Number:  ");
+        let email = prompt("Enter Email:  ");
+        contacts = new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email);
+        contactList.push(contacts);
+    }
+}
+catch (message) {
+    console.error(message);
+}
+//Displaying objects and contacts details 
+console.log(contactList);
+
+let editchoice = prompt("Do you want to Edit any contact (y/n) : ");
+if (editchoice.toLowerCase() == 'y') {
+    let i = 0;
+    let search = prompt("Enter First Name to Edit Contact :");
+    while (search != contactList[i].firstName) {
+        i++;
+    }
+    EditingContacts(i);
+    //After Editing 
+    console.log(contactList);
+}
+
+
+function EditingContacts(i) {
+    console.log("Which One You Want Edit \n1.firstName 2.lastName 3.Address 4.city 5.state 6.zip 7.phoneNumber 8.email");
+    let choice = parseInt(prompt("Enter Your choice : "));
+    switch (choice) {
+        case 1:
+            firstName = prompt("Enter First Name:  ");
+            contactList[i].firstName = firstName;
+            break;
+        case 2:
+            lastName = prompt("Enter Last Name:  ");
+            contactList[i].lastName = lastName;
+            break;
+        case 3:
+            address = prompt("Enter Address:  ");
+            contactList[i].address = address;
+            break;
+        case 4:
+            city = prompt("Enter City:  ");
+            contactList[i].city = city;
+            break;
+        case 5:
+            state = prompt("Enter State:  ");
+            contactList[i].state = state;
+            break;
+        case 6:
+            zip = prompt("Enter Zip:  ");
+            contactList[i].zip = zip;
+            break;
+        case 7:
+            phoneNumber = prompt("Enter Phone Number:  ");
+            contactList[i].phoneNumber = phoneNumber;
+            break;
+        case 8:
+            email = prompt("Enter Email:  ");
+            contactList[i].email = email;
+            break;
+    }
+}
