@@ -186,12 +186,20 @@ function EditingContacts(i) {
     }
 }
 
-//UC 8: Search contact useing City are state
+//UC 8: Search contact useing City
 let cityChoice = prompt("Do you want list of contact from same city (y/n) : ");
-if(cityChoice.toLowerCase() == 'y')
-{
+if (cityChoice.toLowerCase() == 'y') {
     let citySearch = prompt("Enter City Name : ");
-    let cityContactList = contactList.filter(x=>x.city==citySearch);
+    let cityContactList = contactList.filter(x => x.city == citySearch);
     console.log("These are the contacts from same city");
     console.log(cityContactList);
 }
+
+//UC 10: Ability to get Number of contact person by city or state
+let cityCount = prompt("Enter City Name To Get count : ");
+let TotalcityCount = contactList.filter(x=>x.city == cityCount).reduce((count)=>count+1 ,0);
+console.log(TotalcityCount);
+
+let stateCount = prompt("Enter State Name To Get count : ");
+let TotalStateCount = contactList.filter(x=>x.state == stateCount).reduce((count)=>count+1 ,0);
+console.log(TotalStateCount);
