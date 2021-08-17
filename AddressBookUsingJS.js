@@ -69,11 +69,19 @@ catch (message) {
 console.log(contactList);
 //UC 4: Edit the contact
 let editchoice = prompt("Do you want to Edit any contact (y/n) : ");
+//Using Lable to Break if
+Editloop:
 if (editchoice.toLowerCase() == 'y') {
     let i = 0;
     let search = prompt("Enter First Name to Edit Contact :");
-    while (search != contactList[i].firstName) {
-        i++;
+    try {
+        while (search != contactList[i].firstName) {
+            i++;
+        }
+    }
+    catch (message) {
+        console.error(message);
+        break Editloop;
     }
     EditingContacts(i);
     console.log("Update Successful");
@@ -85,26 +93,35 @@ if (editchoice.toLowerCase() == 'y') {
 
 //Uc 5:  Delete contact
 editchoice = prompt("Do you want to Delete any contact (y/n) : ");
+Deleteloop:
 if (editchoice.toLowerCase() == 'y') {
     i = 0;
     search = prompt("Enter First Name to Delete Contact :");
-    while (search != contactList[i].firstName) {
-        i++;
+    try {
+        while (search != contactList[i].firstName) {
+            i++;
+        }
     }
-    if(i<=contactList.length)
-    {
+    catch (message) {
+        console.error(message);
+        break Deleteloop;
+    }
+    if (i <= contactList.length) {
         //splice add and delete at same time.Here we use for only delete
-        contactList.splice(i,1);
+        contactList.splice(i, 1);
         console.log("Deleted Successful");
     }
-    else
-    {
+    else {
         console.log("Contact Not Exit . Enter Valid Input");
     }
     //After Editing 
     console.log("\n After Deleteing Contact :");
     console.log(contactList);
 }
+
+//Find count of Contacts
+let contactCount = contactList.reduce((count) => count += 1, 0);
+console.log("Total Number of contacts are : " + contactCount);
 
 function EditingContacts(i) {
     console.log("Which One You Want Edit \n1.firstName 2.lastName 3.Address 4.city 5.state 6.zip 7.phoneNumber 8.email");
