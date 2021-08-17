@@ -58,8 +58,16 @@ try {
         let zip = prompt("Enter Zip:  ");
         let phoneNumber = prompt("Enter Phone Number:  ");
         let email = prompt("Enter Email:  ");
-        contacts = new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email);
-        contactList.push(contacts);
+        //UC 7: Checking duplicates
+        let duplicateCount = contactList.filter(x => firstName == x.firstName)
+        if (duplicateCount == 0) {
+            contacts = new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email);
+            contactList.push(contacts);
+        }
+        else {
+            console.log("Duplicate Entry Attempt");
+            number++;
+        }
     }
 }
 catch (message) {
@@ -84,7 +92,6 @@ if (editchoice.toLowerCase() == 'y') {
         break Editloop;
     }
     EditingContacts(i);
-    console.log("Update Successful");
 
     //After Editing 
     console.log("\n After Editing Contact :");
@@ -129,35 +136,53 @@ function EditingContacts(i) {
     switch (choice) {
         case 1:
             firstName = prompt("Enter First Name:  ");
-            contactList[i].firstName = firstName;
+            duplicateCount = contactList.filter(x => firstName == x.firstName)
+            if (duplicateCount == 0) {
+                contactList[i].firstName = firstName;
+            }
+            else
+            {
+                console.log("Not Updated . Duplicate Entry Attempted");
+            }
             break;
         case 2:
             lastName = prompt("Enter Last Name:  ");
             contactList[i].lastName = lastName;
+            console.log("Update Successful");
             break;
         case 3:
             address = prompt("Enter Address:  ");
             contactList[i].address = address;
+            console.log("Update Successful");
             break;
         case 4:
             city = prompt("Enter City:  ");
             contactList[i].city = city;
+            console.log("Update Successful");
             break;
         case 5:
             state = prompt("Enter State:  ");
             contactList[i].state = state;
+            console.log("Update Successful");
             break;
         case 6:
             zip = prompt("Enter Zip:  ");
             contactList[i].zip = zip;
+            console.log("Update Successful");
             break;
         case 7:
             phoneNumber = prompt("Enter Phone Number:  ");
             contactList[i].phoneNumber = phoneNumber;
+            console.log("Update Successful");
             break;
         case 8:
             email = prompt("Enter Email:  ");
             contactList[i].email = email;
+            console.log("Update Successful");
+            break;
+        default:
+            console.log("Enter Valid Input ");
+            console.log("NOT Updated");
             break;
     }
 }
