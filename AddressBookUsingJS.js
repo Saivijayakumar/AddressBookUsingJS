@@ -99,9 +99,9 @@ if (editchoice.toLowerCase() == 'y') {
 }
 
 //Uc 5:  Delete contact
-editchoice = prompt("Do you want to Delete any contact (y/n) : ");
+let deletechoice = prompt("Do you want to Delete any contact (y/n) : ");
 Deleteloop:
-if (editchoice.toLowerCase() == 'y') {
+if (deletechoice.toLowerCase() == 'y') {
     i = 0;
     search = prompt("Enter First Name to Delete Contact :");
     try {
@@ -140,8 +140,7 @@ function EditingContacts(i) {
             if (duplicateCount == 0) {
                 contactList[i].firstName = firstName;
             }
-            else
-            {
+            else {
                 console.log("Not Updated . Duplicate Entry Attempted");
             }
             break;
@@ -185,4 +184,14 @@ function EditingContacts(i) {
             console.log("NOT Updated");
             break;
     }
+}
+
+//UC 8: Search contact useing City are state
+let cityChoice = prompt("Do you want list of contact from same city (y/n) : ");
+if(cityChoice.toLowerCase() == 'y')
+{
+    let citySearch = prompt("Enter City Name : ");
+    let cityContactList = contactList.filter(x=>x.city==citySearch);
+    console.log("These are the contacts from same city");
+    console.log(cityContactList);
 }
