@@ -67,7 +67,7 @@ catch (message) {
 }
 //Displaying objects and contacts details 
 console.log(contactList);
-
+//UC 4: Edit the contact
 let editchoice = prompt("Do you want to Edit any contact (y/n) : ");
 if (editchoice.toLowerCase() == 'y') {
     let i = 0;
@@ -76,10 +76,35 @@ if (editchoice.toLowerCase() == 'y') {
         i++;
     }
     EditingContacts(i);
+    console.log("Update Successful");
+
     //After Editing 
+    console.log("\n After Editing Contact :");
     console.log(contactList);
 }
 
+//Uc 5:  Delete contact
+editchoice = prompt("Do you want to Delete any contact (y/n) : ");
+if (editchoice.toLowerCase() == 'y') {
+    i = 0;
+    search = prompt("Enter First Name to Delete Contact :");
+    while (search != contactList[i].firstName) {
+        i++;
+    }
+    if(i<=contactList.length)
+    {
+        //splice add and delete at same time.Here we use for only delete
+        contactList.splice(i,1);
+        console.log("Deleted Successful");
+    }
+    else
+    {
+        console.log("Contact Not Exit . Enter Valid Input");
+    }
+    //After Editing 
+    console.log("\n After Deleteing Contact :");
+    console.log(contactList);
+}
 
 function EditingContacts(i) {
     console.log("Which One You Want Edit \n1.firstName 2.lastName 3.Address 4.city 5.state 6.zip 7.phoneNumber 8.email");
