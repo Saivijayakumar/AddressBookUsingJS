@@ -44,5 +44,12 @@ class Contacts {
         return ("Name: " + this.firstName + " " + this.lastName + " \t Address: " + this.address + " \t City: " + this.city + " \t State: " + this.state + " \t Pincode: " + this.zip + " \t Phone Number: " + this.phoneNumber + " \t Email Id: " + this.email);
     }
 }
-let contacts = new Contacts("Sai", "Vijay", "gandi nagar", "Nellore", "America", 8893, 9989388339, "sai@gmail.com");
+try
+{
+    let contacts = new Contacts("Sai", "Vijay", "gandi nagar", "Nellore", "America", 8893, 9989388339, "sai@gmail.com");
 console.log("Contact Details : \n" + contacts.toString());
+}
+catch(message)
+{
+    console.error(message);
+}
