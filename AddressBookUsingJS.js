@@ -197,24 +197,50 @@ if (cityChoice.toLowerCase() == 'y') {
 
 //UC 10: Ability to get Number of contact person by city or state
 let cityCount = prompt("Enter City Name To Get count : ");
-let TotalcityCount = contactList.filter(x=>x.city == cityCount).reduce((count)=>count+1 ,0);
+let TotalcityCount = contactList.filter(x => x.city == cityCount).reduce((count) => count + 1, 0);
 console.log(TotalcityCount);
 
 let stateCount = prompt("Enter State Name To Get count : ");
-let TotalStateCount = contactList.filter(x=>x.state == stateCount).reduce((count)=>count+1 ,0);
+let TotalStateCount = contactList.filter(x => x.state == stateCount).reduce((count) => count + 1, 0);
 console.log(TotalStateCount);
 
-function Display(list)
-{
-    for( let value of list)
-    {
+function Display(list) {
+    for (let value of list) {
         console.log(value.toString());
     }
 }
-function SortBasedOnName()
-{
-    //Usecase 11: Ability to sort the entries in the address book by Person’s first Name
-    contactList.sort();
+function SortMethod() {
+    //Usecase 11,12: Ability to sort the entries in the address book by first name,City, State, or Zip 
+    console.log("1-Sort Contacts based on First Name\n2-Sort Contacts based on City\n3-Sort Contacts based on State\n4-Sort Contacts based on Zip");
+    let option = parseInt(prompt());
+    switch (option) {
+        case 1:
+            contactList.sort();
+            break;
+        case 2:
+            contactList.sort((x, y) => {
+                if (x.city > y.city) return 1;
+                else return -1;
+            });
+            break;
+        case 3:
+            contactList.sort((x, y) => {
+                if (x.state > y.state) return 1;
+                else return -1;
+            });
+            break;
+        case 4:
+            contactList.sort((x, y) => {
+                if (x.zip > y.zip) return 1;
+                else return -1;
+            });
+            break;
+        default:
+            o = false;
+            break;
+    }
     //Display Array Objects
+    console.log("--------------After Sorting --------------\n");
     Display(contactList);
 }
+SortMethod();
